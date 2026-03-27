@@ -1,0 +1,101 @@
+---
+interface Props {
+	slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<section class="reaction-panel card" data-reaction-panel data-slug={slug}>
+	<div>
+		<p class="eyebrow">Feedback</p>
+		<h2>这篇通讯有触到你吗？</h2>
+		<p>
+			第一版先做本地轻交互占位。它会记住你在这台设备上的选择，后续我们再接入真正的匿名投票与评论服务。
+		</p>
+	</div>
+
+	<div class="reaction-panel__buttons">
+		<button type="button" data-reaction="up">喜欢这篇</button>
+		<button type="button" data-reaction="down">还没共鸣</button>
+	</div>
+
+	<p class="reaction-panel__status" data-reaction-status>还没有选择</p>
+</section>
+
+<script is:inline>
+	document.querySelectorAll('[data-reaction-panel]').forEach((panel) => {
+		const slug = panel.getAttribute('data-slug');
+		const status = panel.querySelector('[data-reaction-status]');
+		const buttons = panel.querySelectorAll('[data-reaction]');
+		const key = `taro-reaction:${slug}`;
+		const saved = localStorage.getItem(key);
+
+		const render = (value) => {
+			status.textContent = value === 'up' ? '你标记为：喜欢这篇' : value === 'down' ? '你标记为：还没共鸣' : '还没有选择';
+			buttons.forEach((button) => {
+				button.dataset.active = button.getAttribute('data-reaction') === value ? 'true' : 'false';
+			});
+		};
+
+		render(saved);
+
+		buttons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const value = button.getAttribute('data-reaction');
+				localStorage.setItem(key, value);
+				render(value);
+			});
+		});
+	});
+</script>
+
+<style>
+	.reaction-panel {
+		display: grid;
+		gap: 1rem;
+		padding: 1.5rem;
+	}
+
+	.reaction-panel h2,
+	.reaction-panel p {
+		margin: 0;
+	}
+
+	.reaction-panel h2 {
+		font-family: var(--font-sans);
+		font-size: 1.6rem;
+		margin-top: 0.6rem;
+	}
+
+	.reaction-panel > div p {
+		margin-top: 0.8rem;
+		line-height: 1.8;
+		color: var(--text-muted);
+	}
+
+	.reaction-panel__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	.reaction-panel__buttons button {
+		padding: 0.8rem 1rem;
+		border-radius: 999px;
+		border: 1px solid var(--surface-border);
+		background: var(--bg-strong);
+		color: var(--text);
+		font: inherit;
+		cursor: pointer;
+	}
+
+	.reaction-panel__buttons button[data-active='true'] {
+		background: var(--accent-soft);
+		border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+	}
+
+	.reaction-panel__status {
+		color: var(--text-muted);
+	}
+</style>

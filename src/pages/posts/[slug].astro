@@ -1,0 +1,120 @@
+---
+import CommentsPlaceholder from '../../components/CommentsPlaceholder.astro';
+import PostCard from '../../components/PostCard.astro';
+import ReactionPanel from '../../components/ReactionPanel.astro';
+import { CATEGORY_META, SITE } from '../../consts';
+import Layout from '../../layouts/Layout.astro';
+import { getAllPosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+	const posts = getAllPosts();
+	return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const Content = post.Content;
+const category = CATEGORY_META[post.data.category];
+const relatedPosts = getAllPosts()
+	.filter((entry) => entry.slug !== post.slug && entry.data.category === post.data.category)
+	.slice(0, 2);
+---
+
+<Layout title={`${post.data.title} | ${SITE.title}`} description={post.data.description}>
+	<article class="shell post-page">
+		<header class="post-page__hero card">
+			<div class="post-page__top">
+				<span class="pill">{category.label}</span>
+				<time datetime={post.data.pubDate.toISOString()}>
+					{post.data.pubDate.toLocaleDateString('zh-CN', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+					})}
+				</time>
+			</div>
+
+			<h1 class="page-title">{post.data.title}</h1>
+			<p class="lede">{post.data.description}</p>
+
+			<div class="post-page__tags">
+				{post.data.tags.map((tag) => (
+					<span class="pill">#{tag}</span>
+				))}
+			</div>
+		</header>
+
+		<div class="grid-two">
+			<div class="card post-page__content">
+				<div class="prose">
+					<Content />
+				</div>
+			</div>
+
+			<aside class="stack">
+				<section class="card post-page__aside">
+					<p class="eyebrow">栏目说明</p>
+					<h2>{category.label}</h2>
+					<p>{category.description}</p>
+				</section>
+
+				{relatedPosts.length > 0 && (
+					<section class="card post-page__aside">
+						<p class="eyebrow">继续阅读</p>
+						<div class="stack">
+							{relatedPosts.map((entry) => (
+								<PostCard post={entry} compact />
+							))}
+						</div>
+					</section>
+				)}
+			</aside>
+		</div>
+
+		<div class="stack">
+			<ReactionPanel slug={post.slug} />
+			<CommentsPlaceholder />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.post-page {
+		display: grid;
+		gap: 1.5rem;
+		padding: 1.25rem 0 0;
+	}
+
+	.post-page__hero,
+	.post-page__content,
+	.post-page__aside {
+		padding: 1.6rem;
+	}
+
+	.post-page__top,
+	.post-page__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+		align-items: center;
+	}
+
+	.post-page__top {
+		color: var(--text-muted);
+		font-size: 0.92rem;
+	}
+
+	.post-page__tags {
+		margin-top: 1.25rem;
+	}
+
+	.post-page__aside h2 {
+		margin: 0.8rem 0 0.5rem;
+		font-family: var(--font-sans);
+	}
+
+	.post-page__aside p:last-child {
+		margin: 0;
+		line-height: 1.8;
+		color: var(--text-muted);
+	}
+</style>

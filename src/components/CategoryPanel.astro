@@ -1,0 +1,54 @@
+---
+import { CATEGORY_META } from '../consts';
+
+const entries = Object.entries(CATEGORY_META);
+---
+
+<section class="category-panel card">
+	<div class="section-heading">
+		<div>
+			<p class="eyebrow">Sections</p>
+			<h2>三种写作地形</h2>
+		</div>
+	</div>
+
+	<div class="category-panel__grid">
+		{entries.map(([slug, meta]) => (
+			<a class="category-panel__item" href={`/${slug}`}>
+				<strong>{meta.label}</strong>
+				<span>{meta.description}</span>
+			</a>
+		))}
+	</div>
+</section>
+
+<style>
+	.category-panel {
+		padding: 1.5rem;
+	}
+
+	.category-panel__grid {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.category-panel__item {
+		display: grid;
+		gap: 0.45rem;
+		padding: 1rem 1.05rem;
+		text-decoration: none;
+		border-radius: calc(var(--radius-md) - 2px);
+		background: var(--bg-strong);
+		border: 1px solid var(--surface-border);
+	}
+
+	.category-panel__item strong {
+		font-size: 1rem;
+	}
+
+	.category-panel__item span {
+		line-height: 1.7;
+		color: var(--text-muted);
+		font-size: 0.94rem;
+	}
+</style>

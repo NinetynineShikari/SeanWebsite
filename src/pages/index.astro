@@ -1,11 +1,63 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import CategoryPanel from '../components/CategoryPanel.astro';
+import HeroPanel from '../components/HeroPanel.astro';
+import PostCard from '../components/PostCard.astro';
 import Layout from '../layouts/Layout.astro';
+import { getAllPosts, getFeaturedPosts } from '../lib/posts';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredPosts = getFeaturedPosts(3);
+const latestPosts = getAllPosts();
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="芋头通讯 | TARO Communication" description="Sean 'Taro' Wang 的个人写作空间。">
+	<div class="shell home">
+		<HeroPanel />
+
+		<section id="latest" class="grid-two">
+			<div class="stack">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Latest dispatches</p>
+						<h2>最新文章</h2>
+						<p>从产品、生活到回忆，按最近更新时间排列。</p>
+					</div>
+				</div>
+
+				{latestPosts.map((post) => (
+					<PostCard post={post} />
+				))}
+			</div>
+
+			<div class="stack">
+				<CategoryPanel />
+
+				<section class="card spotlight">
+					<div class="section-heading">
+						<div>
+							<p class="eyebrow">Featured</p>
+							<h2>推荐阅读</h2>
+						</div>
+					</div>
+
+					<div class="stack">
+						{featuredPosts.map((post) => (
+							<PostCard post={post} compact />
+						))}
+					</div>
+				</section>
+			</div>
+		</section>
+	</div>
 </Layout>
+
+<style>
+	.home {
+		display: grid;
+		gap: 1.6rem;
+		padding: 1.25rem 0 0;
+	}
+
+	.spotlight {
+		padding: 1.5rem;
+	}
+</style>

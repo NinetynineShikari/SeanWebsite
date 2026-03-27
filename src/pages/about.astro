@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="about TARO | 芋头通讯" description="关于 Sean 'Taro' Wang 和芋头通讯。">
+	<section class="shell about-page">
+		<div class="about-page__hero card">
+			<div>
+				<p class="eyebrow">about TARO</p>
+				<h1 class="page-title">一个人，一些写作地带</h1>
+			</div>
+			<p class="lede">
+				芋头通讯不是为了追赶某个指标而存在的站点。它更像一个长期自留地，用来收纳产品工作的判断、
+				日常生活里不愿被快速滑走的感受，以及留在欧洲、尤其是荷兰的那些缓慢记忆。
+			</p>
+		</div>
+
+		<div class="grid-two">
+			<section class="card about-page__section">
+				<h2>我会在这里写什么</h2>
+				<div class="prose">
+					<p>
+						`TARO product` 会放产品思考、团队协作、组织观察与工作方法。它不追求教程口吻，更像是工作中的沉淀。
+					</p>
+					<p>
+						`TARO landscape` 留给生活随笔、散文、城市观察和偶然想写下来的片刻。写法可以轻，也可以慢。
+					</p>
+					<p>
+						`TARO memory` 则更私人一些，主要收纳在荷兰生活过的片段，可能是天气、交通、语言，也可能是一种当时没说出口的心情。
+					</p>
+				</div>
+			</section>
+
+			<section class="card about-page__section">
+				<h2>联系 TARO</h2>
+				<div class="prose">
+					<p>
+						如果你读到某篇文章，想交流、纠错，或者只是想打个招呼，可以写信到
+						<a href="mailto:wangxinyi0823@gmail.com">wangxinyi0823@gmail.com</a>。
+					</p>
+					<p>
+						这也是一个会继续生长的网站。头像、更多页面和评论系统都会在后续版本慢慢长出来。
+					</p>
+				</div>
+			</section>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.about-page {
+		display: grid;
+		gap: 1.5rem;
+		padding: 1.25rem 0 0;
+	}
+
+	.about-page__hero,
+	.about-page__section {
+		padding: 1.6rem;
+	}
+
+	.about-page__section h2 {
+		margin: 0 0 1rem;
+		font-family: var(--font-sans);
+		font-size: 1.7rem;
+	}
+</style>

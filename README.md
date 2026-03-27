@@ -1,46 +1,82 @@
-# Astro Starter Kit: Basics
+# 芋头通讯 | TARO Communication
+
+基于 Astro 搭建的个人静态网站，主要用于发布本地 MDX 文章。
+
+## 当前功能
+
+- 首页 + About 页面
+- 三个内容栏目
+  - `TARO product`
+  - `TARO landscape`
+  - `TARO memory`
+- 本地 `MDX` 文章写作
+- 深色模式切换
+- RSS
+- sitemap
+- 文章页的点赞/点踩本地占位交互
+- 评论区预留位置
+
+## 本地开发
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+本地预览地址通常是 `http://localhost:4321`。
 
-## 🚀 Project Structure
+## 构建
 
-Inside of your Astro project, you'll see the following folders and files:
+```sh
+npm run build
+```
+
+构建结果会输出到 `dist/`，可直接用于 Cloudflare Pages 部署。
+
+## 写文章
+
+所有文章放在：
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/content/posts/
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+新建一个 `.mdx` 文件，例如：
 
-## 🧞 Commands
+```text
+src/content/posts/my-new-post.mdx
+```
 
-All commands are run from the root of the project, from a terminal:
+文章 Frontmatter 格式：
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```mdx
+---
+title: 一篇新文章
+description: 这篇文章的摘要
+pubDate: 2026-03-27
+tags:
+  - 标签一
+  - 标签二
+category: product
+featured: false
+draft: false
+---
 
-## 👀 Want to learn more?
+这里开始写正文。
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 分类字段
+
+`category` 目前支持这三个值：
+
+- `product`
+- `landscape`
+- `memory`
+
+## 后续可继续增强
+
+- 接入真实匿名评论系统
+- 接入真实点赞/点踩统计
+- 增加封面图与文章列表缩略图
+- 增加标签页、归档页
+- 补充 SEO 细节和社交分享图

@@ -1,0 +1,53 @@
+<button class="theme-toggle" type="button" aria-label="切换主题" data-theme-toggle>
+	<span class="theme-toggle__sun">Light</span>
+	<span class="theme-toggle__moon">Dark</span>
+</button>
+
+<script is:inline>
+	const root = document.documentElement;
+	const storageKey = 'taro-theme';
+	const button = document.querySelector('[data-theme-toggle]');
+
+	const applyTheme = (theme) => {
+		root.dataset.theme = theme;
+	};
+
+	const savedTheme = localStorage.getItem(storageKey);
+	const preferredTheme =
+		savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+	applyTheme(preferredTheme);
+
+	button?.addEventListener('click', () => {
+		const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+		applyTheme(nextTheme);
+		localStorage.setItem(storageKey, nextTheme);
+	});
+</script>
+
+<style>
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.45rem;
+		border-radius: 999px;
+		border: 1px solid var(--surface-border);
+		background: var(--bg-elevated);
+		color: var(--text-muted);
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.theme-toggle span {
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		font-size: 0.8rem;
+	}
+
+	:root:not([data-theme='dark']) .theme-toggle__sun,
+	:root[data-theme='dark'] .theme-toggle__moon {
+		background: var(--accent-soft);
+		color: var(--text);
+	}
+</style>

@@ -1,0 +1,62 @@
+---
+import { SITE } from '../consts';
+---
+
+<footer class="site-footer">
+	<div class="shell site-footer__inner">
+		<div>
+			<p class="site-footer__title">写信给 TARO</p>
+			<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+		</div>
+
+		<div class="site-footer__meta">
+			<a href="/about">about TARO</a>
+			<a href="/rss.xml">RSS</a>
+			<p>© 2026 TARO Communication</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		padding: 3rem 0 4rem;
+	}
+
+	.site-footer__inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 1rem 2rem;
+		padding: 1.5rem 1.6rem;
+		border-top: 1px solid var(--surface-border);
+	}
+
+	.site-footer__title {
+		margin: 0 0 0.5rem;
+		color: var(--text-muted);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+	}
+
+	.site-footer__inner a {
+		text-decoration: none;
+	}
+
+	.site-footer__meta {
+		display: grid;
+		justify-items: end;
+		gap: 0.5rem;
+		color: var(--text-muted);
+	}
+
+	.site-footer__meta p {
+		margin: 0;
+	}
+
+	@media (max-width: 720px) {
+		.site-footer__meta {
+			justify-items: start;
+		}
+	}
+</style>

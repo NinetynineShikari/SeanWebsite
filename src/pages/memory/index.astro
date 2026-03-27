@@ -1,0 +1,37 @@
+---
+import PostCard from '../../components/PostCard.astro';
+import { CATEGORY_META } from '../../consts';
+import Layout from '../../layouts/Layout.astro';
+import { getPostsByCategory } from '../../lib/posts';
+
+const category = CATEGORY_META.memory;
+const posts = await getPostsByCategory('memory');
+---
+
+<Layout title={`${category.label} | 芋头通讯`} description={category.description}>
+	<section class="shell listing-page">
+		<header class="card listing-page__hero">
+			<p class="eyebrow">Section</p>
+			<h1 class="page-title">{category.label}</h1>
+			<p class="lede">{category.description}</p>
+		</header>
+
+		<div class="stack">
+			{posts.map((post) => (
+				<PostCard post={post} />
+			))}
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.listing-page {
+		display: grid;
+		gap: 1.5rem;
+		padding: 1.25rem 0 0;
+	}
+
+	.listing-page__hero {
+		padding: 1.6rem;
+	}
+</style>
