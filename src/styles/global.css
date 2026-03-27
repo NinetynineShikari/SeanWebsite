@@ -168,9 +168,10 @@ img {
 }
 
 .section-heading h2 {
-	font-family: var(--font-sans);
+	font-family: var(--font-ui);
 	font-size: clamp(1.6rem, 2vw, 2.1rem);
 	margin: 0;
+	letter-spacing: -0.04em;
 }
 
 .section-heading p {

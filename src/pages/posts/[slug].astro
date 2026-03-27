@@ -21,54 +21,52 @@ const relatedPosts = getAllPosts()
 
 <Layout title={`${post.data.title} | ${SITE.title}`} description={post.data.description}>
 	<article class="shell post-page">
-		<header class="post-page__hero card">
-			<div class="post-page__top">
-				<span class="pill">{category.label}</span>
-				<time datetime={post.data.pubDate.toISOString()}>
-					{post.data.pubDate.toLocaleDateString('zh-CN', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric',
-					})}
-				</time>
-			</div>
-
-			<h1 class="page-title">{post.data.title}</h1>
-			<p class="lede">{post.data.description}</p>
-
-			<div class="post-page__tags">
-				{post.data.tags.map((tag) => (
-					<span class="pill">#{tag}</span>
-				))}
-			</div>
-		</header>
-
-		<div class="grid-two">
-			<div class="card post-page__content">
-				<div class="prose">
-					<Content />
+		<div class="post-page__header">
+			<header class="post-page__hero card">
+				<div class="post-page__top">
+					<span class="pill">{category.label}</span>
+					<time datetime={post.data.pubDate.toISOString()}>
+						{post.data.pubDate.toLocaleDateString('zh-CN', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+					</time>
 				</div>
-			</div>
 
-			<aside class="stack">
-				<section class="card post-page__aside">
-					<p class="eyebrow">栏目说明</p>
-					<h2>{category.label}</h2>
-					<p>{category.description}</p>
-				</section>
+				<h1 class="post-page__title">{post.data.title}</h1>
+				<p class="lede">{post.data.description}</p>
 
-				{relatedPosts.length > 0 && (
-					<section class="card post-page__aside">
-						<p class="eyebrow">继续阅读</p>
-						<div class="stack">
-							{relatedPosts.map((entry) => (
-								<PostCard post={entry} compact />
-							))}
-						</div>
-					</section>
-				)}
+				<div class="post-page__tags">
+					{post.data.tags.map((tag) => (
+						<span class="pill">#{tag}</span>
+					))}
+				</div>
+			</header>
+
+			<aside class="card post-page__aside post-page__aside--intro">
+				<p class="eyebrow">栏目说明</p>
+				<h2>{category.label}</h2>
+				<p>{category.description}</p>
 			</aside>
 		</div>
+
+		<div class="card post-page__content">
+			<div class="prose">
+				<Content />
+			</div>
+		</div>
+
+		{relatedPosts.length > 0 && (
+			<section class="card post-page__related">
+				<p class="eyebrow">继续阅读</p>
+				<div class="post-page__related-grid">
+					{relatedPosts.map((entry) => (
+						<PostCard post={entry} compact />
+					))}
+				</div>
+			</section>
+		)}
 
 		<div class="stack">
 			<ReactionPanel slug={post.slug} />
@@ -84,10 +82,27 @@ const relatedPosts = getAllPosts()
 		padding: 1.25rem 0 0;
 	}
 
+	.post-page__header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 18rem;
+		gap: 1.5rem;
+		align-items: start;
+	}
+
 	.post-page__hero,
 	.post-page__content,
-	.post-page__aside {
+	.post-page__aside,
+	.post-page__related {
 		padding: 1.6rem;
+		min-width: 0;
+	}
+
+	.post-page__title {
+		font-family: var(--font-sans);
+		font-size: clamp(2.6rem, 4vw, 4.15rem);
+		line-height: 1;
+		letter-spacing: -0.045em;
+		margin: 1rem 0 1rem;
 	}
 
 	.post-page__top,
@@ -116,5 +131,26 @@ const relatedPosts = getAllPosts()
 		margin: 0;
 		line-height: 1.8;
 		color: var(--text-muted);
+	}
+
+	.post-page__aside--intro {
+		height: 100%;
+	}
+
+	.post-page__related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	@media (max-width: 900px) {
+		.post-page__header {
+			grid-template-columns: 1fr;
+		}
+
+		.post-page__related-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

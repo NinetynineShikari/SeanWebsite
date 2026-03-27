@@ -14,7 +14,7 @@ const latestPosts = getAllPosts();
 		<HeroPanel />
 
 		<section id="latest" class="grid-two">
-			<div class="stack">
+			<section class="card latest-panel">
 				<div class="section-heading">
 					<div>
 						<p class="eyebrow">Latest dispatches</p>
@@ -23,10 +23,12 @@ const latestPosts = getAllPosts();
 					</div>
 				</div>
 
-				{latestPosts.map((post) => (
-					<PostCard post={post} />
-				))}
-			</div>
+				<div class="stack">
+					{latestPosts.map((post) => (
+						<PostCard post={post} />
+					))}
+				</div>
+			</section>
 
 			<div class="stack">
 				<CategoryPanel />
@@ -58,6 +60,10 @@ const latestPosts = getAllPosts();
 	}
 
 	.spotlight {
+		padding: 1.5rem;
+	}
+
+	.latest-panel {
 		padding: 1.5rem;
 	}
 </style>

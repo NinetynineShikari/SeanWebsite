@@ -1,14 +1,15 @@
 ---
-import { SITE } from '../consts';
 ---
 
 <section class="hero card">
 	<div class="hero__copy">
-		<span class="eyebrow">TARO Communication</span>
-		<h1 class="page-title">芋头通讯</h1>
+		<h1 class="hero__title">
+			<span>TARO</span>
+			<span>COMMUNICATION</span>
+		</h1>
 		<p class="hero__subtitle">
-			你好，我是 Sean “Taro” Wang，也就是芋头王。这里收纳我对产品、生活与记忆发出的
-			一封封通讯。
+			你好，我是 Sean “Taro”
+			Wang，也就是芋头王。这里收纳我对产品、生活与记忆发出的 一封封通讯。
 		</p>
 
 		<div class="hero__actions">
@@ -22,7 +23,6 @@ import { SITE } from '../consts';
 			<span>T</span>
 		</div>
 		<p class="hero__label">头像位已预留</p>
-		<p class="hero__note">{SITE.description}</p>
 	</div>
 </section>
 
@@ -37,6 +37,31 @@ import { SITE } from '../consts';
 
 	.hero__copy {
 		align-self: end;
+		max-width: 42rem;
+	}
+
+	.hero__title {
+		margin: 0 0 1.1rem;
+		display: grid;
+		gap: 0.18em;
+		font-family:
+			"Avenir Next", "Helvetica Neue", "Segoe UI", "PingFang SC",
+			"Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+		font-size: clamp(2.4rem, 5vw, 4.4rem);
+		font-weight: 300;
+		line-height: 0.9;
+		letter-spacing: 0.005em;
+		text-transform: uppercase;
+		max-width: 9.85ch;
+	}
+
+	.hero__title span {
+		display: block;
+	}
+
+	.hero__title span:last-child {
+		font-size: 0.84em;
+		letter-spacing: 0.015em;
 	}
 
 	.hero__subtitle {
@@ -72,27 +97,24 @@ import { SITE } from '../consts';
 		aspect-ratio: 3 / 4;
 		border-radius: 999px 999px 2rem 2rem;
 		background:
-			radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7), transparent 18%),
+			radial-gradient(
+				circle at 30% 30%,
+				rgba(255, 255, 255, 0.7),
+				transparent 18%
+			),
 			linear-gradient(135deg, var(--accent), var(--highlight));
 		color: var(--accent-contrast);
 		font-family: var(--font-sans);
 		font-size: 4rem;
 	}
 
-	.hero__label,
-	.hero__note {
+	.hero__label {
 		margin: 0;
 		text-align: center;
 	}
 
 	.hero__label {
 		font-size: 0.9rem;
-		color: var(--text-muted);
-	}
-
-	.hero__note {
-		max-width: 18rem;
-		line-height: 1.8;
 		color: var(--text-muted);
 	}
 
@@ -106,7 +128,6 @@ import { SITE } from '../consts';
 			justify-items: start;
 		}
 
-		.hero__note,
 		.hero__label {
 			text-align: left;
 		}
