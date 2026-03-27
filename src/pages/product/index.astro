@@ -8,7 +8,7 @@ const category = CATEGORY_META.product;
 const posts = await getPostsByCategory('product');
 ---
 
-<Layout title={`${category.label} | 芋头通讯`} description={category.description}>
+<Layout title={`${category.label} | 芋头通讯`} description={category.description} pageTheme="product">
 	<section class="shell listing-page">
 		<header class="card listing-page__hero">
 			<p class="eyebrow">Section</p>

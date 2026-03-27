@@ -19,7 +19,11 @@ const relatedPosts = getAllPosts()
 	.slice(0, 2);
 ---
 
-<Layout title={`${post.data.title} | ${SITE.title}`} description={post.data.description}>
+<Layout
+	title={`${post.data.title} | ${SITE.title}`}
+	description={post.data.description}
+	pageTheme={category.theme}
+>
 	<article class="shell post-page">
 		<div class="post-page__header">
 			<header class="post-page__hero card">

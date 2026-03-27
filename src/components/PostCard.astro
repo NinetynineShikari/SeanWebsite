@@ -13,7 +13,7 @@ const category = CATEGORY_META[post.data.category];
 
 <article class:list={['post-card card', compact && 'post-card--compact']}>
 	<div class="post-card__meta">
-		<span class="pill">{category.label}</span>
+		<span class:list={['pill', `pill--${post.data.category}`]}>{category.label}</span>
 		<time datetime={post.data.pubDate.toISOString()}>
 			{post.data.pubDate.toLocaleDateString('zh-CN', {
 				year: 'numeric',

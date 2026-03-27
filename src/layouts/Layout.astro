@@ -1,15 +1,17 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../consts';
+import type { PageTheme } from '../consts';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
 	title?: string;
 	description?: string;
+	pageTheme?: PageTheme;
 }
 
-const { title = SITE.title, description = SITE.description } = Astro.props;
+const { title = SITE.title, description = SITE.description, pageTheme = 'landscape' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).toString();
 ---
 
@@ -38,7 +40,7 @@ const canonical = new URL(Astro.url.pathname, SITE.url).toString();
 			document.documentElement.dataset.theme = preferredTheme;
 		</script>
 	</head>
-	<body>
+	<body data-page-theme={pageTheme}>
 		<SiteHeader />
 		<main>
 			<slot />
