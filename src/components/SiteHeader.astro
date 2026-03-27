@@ -1,12 +1,11 @@
 ---
 import { NAV_ITEMS } from '../consts';
-import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="site-header">
 	<div class="shell site-header__inner">
 		<a class="site-header__brand" href="/">
-			<span class="site-header__mark">T</span>
+			<img class="site-header__mark" src="/taaowang.png" alt="Taro Wang" />
 			<span>
 				<strong>芋头通讯</strong>
 				<small>TARO Communication</small>
@@ -19,7 +18,6 @@ import ThemeToggle from './ThemeToggle.astro';
 			))}
 		</nav>
 
-		<ThemeToggle />
 	</div>
 </header>
 
@@ -34,7 +32,7 @@ import ThemeToggle from './ThemeToggle.astro';
 
 	.site-header__inner {
 		display: grid;
-		grid-template-columns: auto 1fr auto;
+		grid-template-columns: auto 1fr;
 		align-items: center;
 		gap: 1rem;
 		padding: 1rem 1.2rem;
@@ -67,15 +65,13 @@ import ThemeToggle from './ThemeToggle.astro';
 	}
 
 	.site-header__mark {
-		display: inline-grid;
-		place-items: center;
-		width: 2.2rem;
-		height: 2.2rem;
+		display: block;
+		width: 2.6rem;
+		height: 2.6rem;
 		border-radius: 50%;
-		background: linear-gradient(135deg, var(--accent), var(--highlight));
-		color: var(--accent-contrast);
-		font-family: var(--font-sans);
-		font-size: 1.1rem;
+		object-fit: cover;
+		border: 1px solid var(--surface-border);
+		background: var(--bg-strong);
 	}
 
 	.site-header__nav {
@@ -103,8 +99,7 @@ import ThemeToggle from './ThemeToggle.astro';
 		}
 
 		.site-header__brand,
-		.site-header__nav,
-		.site-header__inner > :last-child {
+		.site-header__nav {
 			justify-self: center;
 		}
 	}

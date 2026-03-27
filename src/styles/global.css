@@ -26,23 +26,6 @@
 		'Avenir Next', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
 }
 
-:root[data-theme='dark'] {
-	color-scheme: dark;
-	--bg: #161219;
-	--bg-elevated: rgba(28, 23, 34, 0.82);
-	--bg-strong: #211b28;
-	--surface-border: rgba(220, 205, 255, 0.12);
-	--surface-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
-	--text: #f5edf9;
-	--text-muted: #c2b8cb;
-	--accent: #8f72c4;
-	--accent-strong: #dbc7ff;
-	--accent-soft: rgba(143, 114, 196, 0.25);
-	--accent-contrast: #110d15;
-	--highlight: #d9c16f;
-	--highlight-soft: rgba(217, 193, 111, 0.16);
-}
-
 * {
 	box-sizing: border-box;
 }
@@ -101,21 +84,21 @@ body[data-page-theme='product'] {
 }
 
 body[data-page-theme='memory'] {
-	--bg: #f1f1f0;
-	--bg-elevated: rgba(255, 255, 255, 0.93);
-	--bg-strong: #ffffff;
-	--surface-border: rgba(0, 47, 167, 0.12);
-	--surface-shadow: 0 18px 50px rgba(39, 47, 74, 0.06);
+	--bg: #f2f1ed;
+	--bg-elevated: rgba(255, 255, 255, 0.95);
+	--bg-strong: #fbfaf6;
+	--surface-border: rgba(0, 47, 167, 0.1);
+	--surface-shadow: 0 20px 52px rgba(35, 44, 79, 0.05);
 	--text: #202330;
 	--text-muted: #666d7e;
-	--accent: #002fa7;
-	--accent-strong: #2149c7;
-	--accent-soft: rgba(0, 47, 167, 0.1);
+	--accent: #0039d6;
+	--accent-strong: #2452f4;
+	--accent-soft: rgba(0, 57, 214, 0.1);
 	--accent-contrast: #ffffff;
-	--highlight: #d8dded;
-	--highlight-soft: rgba(0, 47, 167, 0.08);
-	--hero-glow-left: rgba(0, 47, 167, 0.08);
-	--hero-glow-right: rgba(203, 211, 225, 0.22);
+	--highlight: #e4e0d2;
+	--highlight-soft: rgba(0, 57, 214, 0.08);
+	--hero-glow-left: rgba(0, 57, 214, 0.07);
+	--hero-glow-right: rgba(228, 224, 210, 0.2);
 }
 
 a {
@@ -198,9 +181,9 @@ img {
 }
 
 .pill--memory {
-	background: rgba(0, 47, 167, 0.1);
-	border-color: rgba(0, 47, 167, 0.14);
-	color: #2240a5;
+	background: rgba(0, 57, 214, 0.1);
+	border-color: rgba(0, 57, 214, 0.16);
+	color: #1d3fd2;
 }
 
 body[data-page-theme='product'] .card {
@@ -233,8 +216,12 @@ body[data-page-theme='product'] .pill--product {
 
 body[data-page-theme='memory'] .card {
 	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.6)),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(250, 248, 242, 0.86)),
 		var(--bg-elevated);
+	border-color: rgba(0, 57, 214, 0.08);
+	box-shadow:
+		0 22px 54px rgba(34, 43, 69, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.78);
 }
 
 body[data-page-theme='memory'] .eyebrow,

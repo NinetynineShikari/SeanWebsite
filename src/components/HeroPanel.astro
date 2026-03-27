@@ -1,15 +1,16 @@
 ---
+
 ---
 
 <section class="hero card">
 	<div class="hero__copy">
 		<h1 class="hero__title">
-			<span>TARO</span>
-			<span>COMMUNICATION</span>
+			<span class="hero__title-primary">TARO</span>
+			<span class="hero__title-secondary">Communication</span>
 		</h1>
 		<p class="hero__subtitle">
-			你好，我是 Sean “Taro”
-			Wang，也就是芋头王。这里收纳我对产品、生活与记忆发出的 一封封通讯。
+			Hi. I'm Sean “Taro” Wang，也就是芋头王。
+			这里是我对世界和自己发出的通讯文稿合集。欢迎光临。
 		</p>
 
 		<div class="hero__actions">
@@ -19,10 +20,7 @@
 	</div>
 
 	<div class="hero__profile">
-		<div class="hero__avatar" aria-hidden="true">
-			<span>T</span>
-		</div>
-		<p class="hero__label">头像位已预留</p>
+		<img class="hero__avatar" src="/taaowang.png" alt="Taro Wang" />
 	</div>
 </section>
 
@@ -43,25 +41,27 @@
 	.hero__title {
 		margin: 0 0 1.1rem;
 		display: grid;
-		gap: 0.18em;
-		font-family:
-			"Avenir Next", "Helvetica Neue", "Segoe UI", "PingFang SC",
-			"Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-		font-size: clamp(2.4rem, 5vw, 4.4rem);
-		font-weight: 300;
-		line-height: 0.9;
-		letter-spacing: 0.005em;
-		text-transform: uppercase;
-		max-width: 9.85ch;
+		gap: 0.08em;
+		font-family: var(--font-sans);
+		font-size: clamp(2.7rem, 5.3vw, 4.8rem);
+		font-weight: 500;
+		line-height: 0.92;
+		letter-spacing: -0.045em;
+		max-width: 10.4ch;
 	}
 
 	.hero__title span {
 		display: block;
 	}
 
-	.hero__title span:last-child {
-		font-size: 0.84em;
-		letter-spacing: 0.015em;
+	.hero__title-primary {
+		text-transform: uppercase;
+	}
+
+	.hero__title-secondary {
+		font-size: 0.88em;
+		font-weight: 400;
+		letter-spacing: -0.03em;
 	}
 
 	.hero__subtitle {
@@ -80,9 +80,7 @@
 
 	.hero__profile {
 		display: grid;
-		align-content: start;
-		justify-items: center;
-		gap: 0.8rem;
+		place-items: center;
 		padding: 1.5rem;
 		background:
 			linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.28)),
@@ -91,31 +89,13 @@
 	}
 
 	.hero__avatar {
-		display: grid;
-		place-items: center;
-		width: min(100%, 15rem);
-		aspect-ratio: 3 / 4;
-		border-radius: 999px 999px 2rem 2rem;
-		background:
-			radial-gradient(
-				circle at 30% 30%,
-				rgba(255, 255, 255, 0.7),
-				transparent 18%
-			),
-			linear-gradient(135deg, var(--accent), var(--highlight));
-		color: var(--accent-contrast);
-		font-family: var(--font-sans);
-		font-size: 4rem;
-	}
-
-	.hero__label {
-		margin: 0;
-		text-align: center;
-	}
-
-	.hero__label {
-		font-size: 0.9rem;
-		color: var(--text-muted);
+		width: min(100%, 17rem);
+		aspect-ratio: 1;
+		object-fit: contain;
+		background: var(--bg-strong);
+		border-radius: 1.4rem;
+		border: 1px solid var(--surface-border);
+		box-shadow: var(--surface-shadow);
 	}
 
 	@media (max-width: 900px) {
@@ -125,11 +105,7 @@
 		}
 
 		.hero__profile {
-			justify-items: start;
-		}
-
-		.hero__label {
-			text-align: left;
+			place-items: center;
 		}
 	}
 </style>

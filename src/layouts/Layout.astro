@@ -32,13 +32,6 @@ const canonical = new URL(Astro.url.pathname, SITE.url).toString();
 		<meta property="og:url" content={canonical} />
 		<meta property="og:site_name" content={SITE.title} />
 		<meta name="twitter:card" content="summary_large_image" />
-		<script is:inline>
-			const savedTheme = localStorage.getItem('taro-theme');
-			const preferredTheme =
-				savedTheme ||
-				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-			document.documentElement.dataset.theme = preferredTheme;
-		</script>
 	</head>
 	<body data-page-theme={pageTheme}>
 		<SiteHeader />
